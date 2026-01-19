@@ -11,24 +11,6 @@ function TaskList({ onEdit }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'P1': return '#d32f2f'; // Red
-      case 'P2': return '#ff9800'; // Orange
-      case 'P3': return '#4caf50'; // Green
-      default: return '#4caf50'; // Default to P3 green
-    }
-  };
-
-  const getPriorityLabel = (priority) => {
-    switch (priority) {
-      case 'P1': return 'P1';
-      case 'P2': return 'P2';
-      case 'P3': return 'P3';
-      default: return 'P3';
-    }
-  };
-
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -145,7 +127,7 @@ function TaskList({ onEdit }) {
           <ListItem 
             key={task.id} 
             sx={{ 
-              pr: 20,
+              pr: 18,
               py: 1,
               mb: 1,
               borderRadius: 2,
@@ -221,18 +203,6 @@ function TaskList({ onEdit }) {
                 gap: 1
               }}
             >
-              <Chip
-                label={getPriorityLabel(task.priority || 'P3')}
-                size="small"
-                sx={{
-                  height: 20,
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  backgroundColor: getPriorityColor(task.priority || 'P3'),
-                  color: 'white',
-                  minWidth: 32
-                }}
-              />
               {task.due_date && (
                 <Chip
                   icon={<EventIcon sx={{ fontSize: 14 }} />}
